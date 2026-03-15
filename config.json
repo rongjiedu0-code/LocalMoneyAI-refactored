@@ -1,0 +1,19 @@
+{
+    "dev": {
+      "OLLAMA_HOST": "http://localhost:11434",
+      "VISION_MODEL": "minicpm-v:latest",
+      "TEXT_MODEL": "qwen2.5:7b",
+      "DB_PATH": "money.db",
+      "LOG_LEVEL": "INFO",
+      "ENABLE_FALLBACK": true
+    },
+    "prod": {
+      "OLLAMA_HOST": "http://localhost:11434",
+      "VISION_MODEL": "minicpm-v:latest",
+      "TEXT_MODEL": "qwen2.5:7b",
+      "DB_PATH": "money.db",
+      "LOG_LEVEL": "WARNING",
+      "ENABLE_FALLBACK": true
+    }
+  }
+  
