@@ -23,7 +23,6 @@ class QuickEntryPage:
         with col2:
             self._render_text_input()
         
-        self._render_voice_input()
         self._render_staging_area()
     
     def _render_image_upload(self):
@@ -76,63 +75,7 @@ class QuickEntryPage:
                 logger.error(f"文本处理失败: {e}", exc_info=True)
                 st.error(f"{get_text('extract_fail')}: {e}")
 
-    def _render_voice_input(self):
-        """语音输入区（仅在 Whisper 可用时展示）"""
-        from services.audio.whisper_service import WhisperService
-        if not WhisperService.is_available():
-            return
-        
-        st.divider()
-        st.subheader(get_text("voice_header"))
-        
-        try:
-            from audio_recorder_streamlit import audio_recorder
-            audio_bytes = audio_recorder(
-                text=get_text("press_record"),
-                recording_color="#e74c3c",
-                neutral_color="#3498db",
-                icon_name="microphone",
-                icon_size="2x"
-            )
-        except ImportError:
-            st.info(f"💡 {get_text('install_audio_hint')}: `pip install audio-recorder-streamlit`")
-            return
-        
-        if audio_bytes:
-            try:
-                import tempfile, os
-                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-                    tmp.write(audio_bytes)
-                    tmp_path = tmp.name
-                
-                with st.spinner(get_text("whisper_transcribing")):
-                    whisper = WhisperService(model_size="small", device="cpu")
-                    text = whisper.transcribe(tmp_path)
-                    os.unlink(tmp_path)
-                
-                st.info(f'{get_text("transcribe_result")}："{text}"')
-                
-                if text.strip():
-                    with st.spinner(get_text("ai_analyzing")):
-                        result = self.tx_service.extract_from_text(text)
-                    if result:
-                        st.session_state.staging_txs.extend(result)
-                        st.success(get_text("text_extract_success", count=len(result)))
-                        st.rerun()
-                    else:
-                        st.warning(get_text("not_record_warning"))
-            except Exception as e:
-                logger.error(f"语音记账失败: {e}", exc_info=True)
-                st.error(f"❌ 语音处理失败: {e}")
-
-    def _render_staging_area(self):
-        """渲染核对和入库的暂存区UI"""
-        if not st.session_state.staging_txs:
-            return
-            
-        st.divider()
-        st.subheader(get_text("staging_header"))
-        st.info(get_text("staging_info"))
+   
         
         import pandas as pd
         from datetime import date as date_type
