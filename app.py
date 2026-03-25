@@ -105,10 +105,11 @@ def get_services():
         from services.ai.answerer import AIAnswerer
         from config_loader import config
         from database.connection import init_pool
-        
+        from database.schema import init_schema
         # 初始化数据库连接池
         init_pool(config.DB_PATH)
-        
+        # 初始化数据库模式（如创建 transactions 表等）
+        init_schema()
         client = OllamaClient()
         ai_extractor = create_extractor(
             client=client,
