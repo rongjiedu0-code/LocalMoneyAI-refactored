@@ -15,7 +15,6 @@ A privacy-first local AI-powered personal finance tracker. All data stays on you
 
 - **🤖 AI-Powered Entry** - Just type naturally: "Lunch 35, taxi 20" and AI extracts the data
 - **📸 Receipt Scanning** - Upload receipts and AI automatically recognizes transactions
-- **🎤 Voice Input** - Speak your expenses (powered by Whisper)
 - **📊 Smart Analytics** - Interactive charts and AI-powered insights
 - **🔐 100% Local** - Your financial data never leaves your computer
 - **💾 One-Click Backup** - Export all data anytime
@@ -28,7 +27,6 @@ A privacy-first local AI-powered personal finance tracker. All data stays on you
 | AI Engine | Ollama (Local LLM) |
 | Database | SQLite |
 | Charts | Plotly |
-| Voice | Faster-Whisper |
 
 ### 📦 Installation
 
@@ -65,7 +63,6 @@ LocalMoneyAI_v0.4.0/
 ├── database/              # Data layer
 ├── services/              # Business logic
 │   ├── ai/               # AI services
-│   ├── audio/            # Voice processing
 │   └── transaction/      # Transaction management
 ├── views/                 # Streamlit UI pages
 └── utils/                 # Utilities
@@ -81,7 +78,6 @@ MIT License
 ✨ 功能特性
 🤖 AI 智能记账 - 自然语言输入："午饭35，打车20"，AI 自动提取数据
 📸 票据识别 - 上传小票照片，AI 自动识别交易记录
-🎤 语音输入 - 说出你的消费（基于 Whisper）
 📊 智能分析 - 交互式图表和 AI 财务洞察
 🔐 100% 本地运行 - 你的财务数据从不离开电脑
 💾 一键备份 - 随时导出所有数据
@@ -92,7 +88,6 @@ MIT License
 | AI 引擎 | Ollama (本地大模型) |
 | 数据库 | SQLite |
 | 图表 | Plotly |
-| 语音 | Faster-Whisper |
 
 📦 安装指南
 环境要求
@@ -124,7 +119,6 @@ LocalMoneyAI_v0.4.0/
 ├── database/              # 数据层
 ├── services/              # 业务逻辑层
 │   ├── ai/               # AI 服务
-│   ├── audio/            # 语音处理
 │   └── transaction/      # 交易管理
 ├── views/                 # Streamlit 页面
 └── utils/                 # 工具函数
